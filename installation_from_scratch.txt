@@ -1,0 +1,9 @@
+1) VirtualBox + Ubuntu 16.04 
+	http://releases.ubuntu.com/16.04/
+
+2) Arranjar as dependencias:
+ 
+	Instalar GuestAddons 
+	Descarregar do cluster/github as coisas necessárias
+
+
