@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euxo #Any errors will terminate script
+set -e #Any errors will terminate script
 
 
 cd  ~
