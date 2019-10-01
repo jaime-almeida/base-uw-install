@@ -1,14 +1,13 @@
 Default running things: 
 
-
-mpirun -np 4 ./Underworld /home/jaime/Documents/Debugging/VC_test/vc_test.xml -Uzawa_velSolver_ksp_type preonly -Uzawa_velSolver_pc_type lu -Uzawa_velSolver_pc_factor_mat_solver_package mumps -mat_mumps_icntl_14 100
+mpirun -np 4 .$UW_DIR/bin/Underworld /path/to/file/FILE.xml -Uzawa_velSolver_ksp_type preonly -Uzawa_velSolver_pc_type lu -Uzawa_velSolver_pc_factor_mat_solver_package mumps -mat_mumps_icntl_14 100
 
 
 
 checking geometry:
 
 
-mpirun -np 4 ./Underworld /media/jaime/FCUL_BACKUP/AgeTest/Input\ Files/No\ Plateau/main.xml -Uzawa_velSolver_ksp_type preonly -Uzawa_velSolver_pc_type lu -Uzawa_velSolver_pc_factor_mat_solver_package mumps -mat_mumps_icntl_14 100 --maxTimeSteps=-1 --components.materialSwarm.overrideMaterialCheck=True
+mpirun -np 4 .$UW_DIR/bin/Underworld //path/to/file/FILE.xml -Uzawa_velSolver_ksp_type preonly -Uzawa_velSolver_pc_type lu -Uzawa_velSolver_pc_factor_mat_solver_package mumps -mat_mumps_icntl_14 100 --maxTimeSteps=-1 --components.materialSwarm.overrideMaterialCheck=True
 
 
 
