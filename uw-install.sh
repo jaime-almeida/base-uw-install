@@ -1,4 +1,8 @@
 #!/bin/bash
+
+set -e  #Any errors will terminate script
+
+
 cd  ~
 
 echo "\n \n \n \n \n"
@@ -31,8 +35,11 @@ tar xzvf petsc-3.5.4.tar.gz; mv petsc-3.5.4 ~
 
 cd ../uw\ zips
 unrar x bleedingEdge.part01.rar
-mkdir ~/uw
+mkdir ~/uw; mkdir ~/uw/info
+
 sudo mv bleedingEdge ~/uw
+
+mv info ~/uw #Include the info
 
 echo "\n\n\n\n\n"
 
@@ -57,6 +64,7 @@ make PETSC_DIR=/home/$USER/petsc-3.5.4 PETSC_ARCH=arch-linux2-c-opt test
 export PETSC_DIR=/home/$USER/petsc-3.5.4/
 echo "export PETSC_DIR=/home/$USER/petsc-3.5.4/" >> ~/.bashrc
 
+
 echo "\n\n\n\n\n"
 
 echo "        -------------------------------------------------------"
@@ -67,7 +75,7 @@ echo "        -------------------------------------------------------"
 
 
 echo "\n\n\n\n\n"
-source ~/.bashrc
+. ~/.bashrc
 
 sudo chmod -R 777 ~/uw; cd ~/uw/bleedingEdge/
 
@@ -75,10 +83,22 @@ sudo chmod -R 777 ~/uw; cd ~/uw/bleedingEdge/
 
 ./scons.py
 
-export UW_DIR=/home/$USER/uw/bleedingEdge/build/bin
+export UW_DIR=/home/$USER/uw/bleedingEdge/build
 echo "export UW_DIR=/home/$USER/uw/bleedingEdge/build/bin" >> ~/.bashrc
-source ~/.bashrc
+. ~/.bashrc
 
-cd CartesianEarthbox
-sudo ./configure.py --petsc-dir=$PETSC_DIR --hdf5-dir=/usr/lib/x86_64-linux-gnu/hdf5/openmpi
+cd CartesianEarthBox
+./configure.py --petsc-dir=$PETSC_DIR --hdf5-dir=/usr/lib/x86_64-linux-gnu/hdf5/openmpi
 ./scons.py
+
+
+echo "\n\n\n\n\n"
+
+echo "        -------------------------------------------------------"
+echo "        |                                                     |"
+echo "        |                UNDERWORLD INSTALLED                 |"
+echo "        |                                                     |"
+echo "        |                                                     |"
+echo "        |         Check folder ~/uw/info/ for commands        |"
+echo "        |                                                     |"
+echo "        -------------------------------------------------------"
