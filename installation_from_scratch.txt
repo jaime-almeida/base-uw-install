@@ -1,9 +1,9 @@
 1) VirtualBox + Ubuntu 16.04 
 	http://releases.ubuntu.com/16.04/
 
-2) Arranjar as dependencias:
- 
-	Instalar GuestAddons 
-	Descarregar do cluster/github as coisas necessárias
-
+2) Abrir terminal (CTRL + ALT + T)
+	sudo apt-get install git 
+	git clone https://github.com/jaime-almeida/base-uw-install
+	cd base-uw-install
+	sudo -u $USER sh uw-install.sh
 
