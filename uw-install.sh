@@ -85,7 +85,9 @@ sudo chmod -R 777 ~/uw; cd ~/uw/bleedingEdge/
 ./scons.py
 
 export UW_DIR=/home/$USER/uw/bleedingEdge/build
-echo "export UW_DIR=/home/$USER/uw/bleedingEdge/build/bin" >> ~/.bashrc
+echo "export UW_DIR=/home/$USER/uw/bleedingEdge/build" >> ~/.bashrc
+export UW_EXE=/home/$USER/uw/bleedingEdge/build/bin/Underworld
+echo "export UW_EXE=/home/$USER/uw/bleedingEdge/build/bin/Underworld" >> ~/.bashrc
 . ~/.bashrc
 
 cd CartesianEarthBox
