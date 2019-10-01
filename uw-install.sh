@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e  #Any errors will terminate script
+set -euxo #Any errors will terminate script
 
 
 cd  ~
@@ -33,13 +33,14 @@ echo "\n\n\n\n\n"
 cd base-uw-install*/petsc*
 tar xzvf petsc-3.5.4.tar.gz; mv petsc-3.5.4 ~
 
+# ------------- UW --------
 cd ../uw\ zips
 unrar x bleedingEdge.part01.rar
-mkdir ~/uw; mkdir ~/uw/info
-
+mkdir ~/uw; mkdir ~/uw/inputs
 sudo mv bleedingEdge ~/uw
+mv uw_info.txt ~/uw #Include the info
 
-mv info ~/uw #Include the info
+mv sphere.tar.gz ~/uw/inputs 
 
 echo "\n\n\n\n\n"
 
@@ -99,6 +100,6 @@ echo "        |                                                     |"
 echo "        |                UNDERWORLD INSTALLED                 |"
 echo "        |                                                     |"
 echo "        |                                                     |"
-echo "        |         Check folder ~/uw/info/ for commands        |"
+echo "        |         Check  ~/uw/uw_info.txt for commands        |"
 echo "        |                                                     |"
 echo "        -------------------------------------------------------"
