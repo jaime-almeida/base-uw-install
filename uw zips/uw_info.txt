@@ -14,3 +14,97 @@ mpirun -np 4 .$UW_DIR/bin/Underworld //path/to/file/FILE.xml -Uzawa_velSolver_ks
 Restarting at X TS:
 (add in the end)
  --restartTimestep=X
+
+
+NEW NEEDED STRUCTS (ADD AFTER RHEOLOGY MATERIAL AND BEFORE COURANT)
+
+<!-- ADDED FROM NEW FILES-->
+	
+	<struct mergeType="merge" name="components">
+        <struct name="sourceTerms_thermalEqn">
+            <param name="Type">Ppc_Operation</param>
+            <param name="Operation"> + </param>
+            <list name="Properties">
+                <param> radiogenicHeating </param>
+            </list>
+        </struct>
+
+        <struct name="radiogenicHeating">
+            <param name="Type">Ppc_Operation</param>
+            <param name="Operation"> / </param>
+            <list name="Properties">
+                <param>RadiogenicHeatProductionLabel</param>
+                <param>rho_cp</param>
+            </list>
+        </struct>
+        <struct name="rho_cp">
+            <param name="Type">Ppc_Operation</param>
+            <param name="Operation"> * </param>
+            <list name="Properties">
+                <param>DensityLabel</param>
+                <param>CpLabel</param>
+            </list>
+        </struct>
+
+        <struct name="thermalEqn">
+            <param name="Type">VectorAssemblyTerm_NA__F</param>
+            <param name="ForceVector">residual</param>
+            <param name="functionLabel">sourceTerms_thermalEqn</param>
+            <param name="Swarm">picIntegrationPoints</param>
+            <param name="Manager">default_ppcManager</param>
+        </struct>
+
+        <struct name="viscousHeating">
+            <param name="Type"> ViscousHeatingTermPpc </param>
+            <param name="ForceVector">residual</param>
+            <param name="EnergyEqn">EnergyEqn</param>
+            <param name="Swarm">picIntegrationPoints</param>
+            <param name="DeviatoricStressField"> recoveredDeviatoricStressField </param>
+            <param name="StrainRateField"> StrainRateField </param>
+            <param name="DensityLabel"> DensityLabel </param>
+            <param name="CpLabel"> CpLabel </param>
+            <param name="ScalingFactor"> 1.0 </param>
+        </struct>
+
+       <struct name="adiabaticHeating">
+            <param name="Type"> AdiabaticHeatingTermPpc </param>
+            <param name="ForceVector"> residual </param>
+            <param name="EnergyEqn"> EnergyEqn </param>
+            <param name="Swarm"> picIntegrationPoints </param>
+            <param name="VelocityField"> VelocityField </param>
+            <param name="TemperatureField"> TemperatureField </param>
+            <param name="PressureField"> PressureField </param>
+            <param name="CpLabel"> CpLabel </param>
+            <param name="ThermalExpansivityLabel"> ThermalExpansivityLabel </param>
+            <param name="ExternalFunction"> 1.0 </param>
+        </struct>
+
+        <struct mergeType="replace" name="defaultResidualForceTerm">
+            <param name="Type">SUPGAdvDiffTermPpc</param>
+            <param name="ForceVector">residual</param>
+            <param name="EnergyEqn">EnergyEqn</param>
+            <param name="Swarm">picIntegrationPoints</param>
+            <param name="VelocityField">VelocityField</param>
+            <param name="PhiField">TemperatureField</param>
+            <param name="DiffusivityLabel">DiffusivityLabel</param>
+        </struct>
+    </struct>
+
+	
+	<!-- ADDED FROM NEW FILES-->
+ 
+ BASIC RHEOLOGY MATERIAL:
+ <struct name="sphereRheology">
+    <param name="Type">RheologyMaterial</param>
+    <param name="Shape">sphereShape</param>
+     <list name="Rheology">
+      <param>strongViscosity</param>
+      <param>viscosityLimiter</param>
+     </list>
+    <param name="CpLabel" units="J/(kg*K)"> 0 </param>
+    <param name="DiffusivityLabel"> 1e17 </param>
+    <param name="DensityLabel" units="kg/m^3"> 3000. </param>
+    <param name="ThermalExpansivityLabel" units="K^-1"> 0 </param>
+    <param name="RadiogenicHeatProductionLabel" units="kg/(m*s*s*s)"> 0 </param>
+    <param name="LatentHeatFusionLabel"> 0.0 </param>
+	</struct> 
