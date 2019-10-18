@@ -93,16 +93,17 @@ class uw_model:
         try:
             if self.current_step:
                 print('A previous iteration was detected, removing the output.')
-            
+                
                 # Clean the output dictionary:
                 self.output = {}
                 
                 # Supposedly help clean further
                 gc.collect()
-        except AttributeError:
-            self.current_step = ts_writer(int(step))
-
-           
+        except:
+            pass
+        
+        # Set the current TS
+        self.current_step = ts_writer(int(step))   
             
         
        
