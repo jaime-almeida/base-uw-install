@@ -12,6 +12,7 @@ import numpy as np
 import pandas as pd
 from multiprocessing import  Pool 
 #import dask.dataframe as dd
+import gc as gc
 
 cmy = 365*24*60*60.*100
 
@@ -87,8 +88,25 @@ class uw_model:
         # Set the timestep for further processes
         if step > 1e5:
             raise Exception('Max timestep is 10,000.')
-
-        self.current_step = ts_writer(int(step))
+            
+         # If a previous iteration of the model exists:
+        try:
+            if self.current_step:
+                print('A previous iteration was detected, removing the output.')
+                
+                # Clean the output dictionary:
+                self.output = {}
+                
+                # Supposedly help clean further
+                gc.collect()
+        except:
+            pass
+        
+        # Set the current TS
+        self.current_step = ts_writer(int(step))   
+            
+        
+       
         
     def set_scaling_factor(self, scf):
         # Set the timestep for further processes
