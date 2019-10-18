@@ -84,6 +84,9 @@ class uw_model:
         # Initiate a boundary coordinate 
         self.boundary = {}
         
+        # Set a preliminary scf:
+        self.scf = float(1e22)
+        
     def set_current_ts(self, step):
         # Set the timestep for further processes
         if step > 1e5:
@@ -104,12 +107,10 @@ class uw_model:
         
         # Set the current TS
         self.current_step = ts_writer(int(step))   
-            
         
-       
         
     def set_scaling_factor(self, scf):
-        # Set the timestep for further processes
+        # Set the scaling factor for further processes
         self.scf = float(scf)
                 
     def set_slice(self, direction, value):
