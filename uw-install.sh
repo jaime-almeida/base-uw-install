@@ -16,7 +16,7 @@ echo "\n \n \n \n \n"
 sudo apt-get update
 sudo apt-get --assume-yes upgrade
 sudo apt-get --assume-yes install build-essential
-sudo apt-get --assume-yes install unrar cmake fcc python-dev hdf5-tools libhdf5-serial-dev libhdf5-dev libhdf5-openmpi-dev valgrind openmpi-bin openmpi-common openssh-client openssh-server libopenmpi1.10 libopenmpi-dev libxml2-dev libpng-dev
+sudo apt-get --assume-yes install unrar cmake fcc python-dev hdf5-tools libhdf5-serial-dev libhdf5-dev libhdf5-openmpi-dev valgrind openmpi-bin openmpi-common openssh-client openssh-server libopenmpi2 libopenmpi-dev libxml2-dev libpng-dev
 
 echo "\n\n\n\n\n"
 
