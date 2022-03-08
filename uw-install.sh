@@ -92,6 +92,7 @@ cd CartesianEarthBox
 ./configure.py --petsc-dir=$PETSC_DIR --hdf5-dir=/usr/lib/x86_64-linux-gnu/hdf5/openmpi
 ./scons.py
 
+. ~/.bashrc
 
 echo "\n\n\n\n\n"
 
@@ -99,7 +100,7 @@ echo "        -------------------------------------------------------"
 echo "        |                                                     |"
 echo "        |                UNDERWORLD INSTALLED                 |"
 echo "        |                                                     |"
-echo "        |              Please run: source ~/.bashrc           |"
+echo "        |                                                     |"
 echo "        |                                                     |"
 echo "        |         Check  ~/uw/uw_info.txt for commands        |"
 echo "        |                                                     |"
