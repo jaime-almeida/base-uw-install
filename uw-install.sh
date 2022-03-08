@@ -29,16 +29,16 @@ echo "        -------------------------------------------------------"
 echo "\n\n\n\n\n"
 
 cd base-uw-install*/petsc*
-tar xzvf petsc-3.5.4.tar.gz; mv petsc-3.5.4 ~
+tar xzvf petsc-3.5.4.tar.gz; cp petsc-3.5.4 ~
 
 # ------------- UW --------
 cd ../uw\ zips
 unrar x bleedingEdge.part01.rar
 mkdir ~/uw; mkdir ~/uw/inputs
-sudo mv bleedingEdge ~/uw
-mv uw_info.txt ~/uw #Include the info
+sudo cp bleedingEdge ~/uw
+cp uw_info.txt ~/uw #Include the info
 
-mv sphere.tar.gz ~/uw/inputs 
+cp sphere.tar.gz ~/uw/inputs 
 
 echo "\n\n\n\n\n"
 
